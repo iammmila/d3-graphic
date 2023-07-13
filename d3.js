@@ -23,7 +23,11 @@ d3.csv("./data.csv")
       d.Rank = +d.Rank;
     });
 
-    // Set the domain of the x and y scales
+    // Define the color scale
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+    // Extract the unique country names
+    const countries = [...new Set(data.map((d) => d.Country))];
+    // Iterate over each country
     x.domain(
       d3.extent(data, function (d) {
         return new Date(d.Year);
@@ -36,6 +40,59 @@ d3.csv("./data.csv")
       }),
     ]);
 
+    countries.forEach(function (country, i) {
+      // Filter the data for the current country
+      const filteredData = data.filter(function (d) {
+        return d.Country === country;
+      });
+
+      // Create the line generator for the current country
+      const line = d3
+        .line()
+        .x(function (d) {
+          return x(new Date(d.Year));
+        })
+        .y(function (d) {
+          return y(d.Rank);
+        });
+
+      // Add the line path to the SVG element
+      svg
+        .append("path")
+        .datum(filteredData)
+        .attr("fill", "none")
+        .attr("stroke", colorScale(i)) // Assign a unique color based on the index
+        .attr("stroke-width", 3)
+        .attr("d", line);
+    });
+    // const Afghanistan = data.filter(function (d) {
+    //   return d.Country === "Afghanistan";
+    // });
+
+    // const Albania = data.filter(function (db) {
+    //   return db.Country === "Albania";
+    // });
+
+    // const Haiti = data.filter(function (d) {
+    //   return d.Country === "Haiti";
+    // });
+
+    // const Russia = data.filter((d) => d.Country === "Russia");
+    // const Rwanda = data.filter((d) => d.Country === "Rwanda");
+    // const Uruguay = data.filter((d) => d.Country === "Uruguay");
+    // Set the domain of the x and y scales
+    // x.domain(
+    //   d3.extent(data, function (d) {
+    //     return new Date(d.Year);
+    //   })
+    // );
+    // y.domain([
+    //   0,
+    //   d3.max(data, function (d) {
+    //     return d.Rank;
+    //   }),
+    // ]);
+
     // Add the x-axis
     svg
       .append("g")
@@ -44,38 +101,12 @@ d3.csv("./data.csv")
 
     // Add the y-axis
     svg.append("g").call(d3.axisLeft(y));
-
-    // Create the line generator
-    const lineAfhganistan = d3
-      .line()
-      .x(function (d) {
-        return x(new Date(d.Year));
-      })
-      .y(function (d) {
-        return y(d.Rank);
-      });
-
-    // Add the line path to the SVG element
-    svg
-      .append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "purple")
-      .attr("stroke-width", 3)
-      .attr("d", lineAfhganistan);  
-  })
+    })
   .catch(function (error) {
     console.log(error);
   });
+//??????????????????????????????????????????????????????????
 
-// function getComboA(selectObject) {
-//   var value = selectObject.value;
-//   console.log(value);
-// }
-const selectElement = document.querySelector("#sector");
-let output = selectElement.value;
-// document.querySelector("output").innerHTML = output;
-d3.select("output").text(output);
 // // Set dimensions and margins for the chart
 // const margin = { top: 70, right: 30, bottom: 40, left: 80 };
 // const width = 1200 - margin.left - margin.right;
