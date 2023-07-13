@@ -15,67 +15,45 @@
 
 <body>
     <div>
+        <!-- !filter data -->
         <div>
-            <select id="sector">
-                <option value="Sector">Sector</option>
-                <option value="Health">Health</option>
-                <option value="Index">Index</option>
-                <option value="Social">Social</option>
-                <option value="Economy">Economy</option>
-                <option value="Government">Government</option>
-                <option value="Transportation">Transportation</option>
-                <option value="Army">Army</option>
-                <option value="Business">Business</option>
-            </select>
+            <div><label for="country">Country</label>
+                <select name="country" id="country">
+                    <!-- <option value="">Country</option> -->
+                </select>
+            </div>
+            <div>
+                <label for="sector">Sector</label>
+                <select name="sector" id="sector">
+                    <option value="">choose</option>
+                </select>
+            </div>
+            <div>
+                <label for="subsector">Subsector</label>
+                <select name="subsector" id="subsector"></select>
+            </div>
+            <div>
+                <label for="indicator">Indicator</label>
+                <select name="indicator" id="indicator"></select>
+            </div>
+            <div>
+                <label for="year">Year</label>
+                <select name="year" id="year"></select>
+            </div>
         </div>
-        <span class="output"></span>
-        <select id="subsector">
-            <option value="Child and maternal mortality">Child and maternal mortality</option>
-            <option value="Consumption and investment">Consumption and investment</option>
-            <option value="Demographics">Demographics</option>
-            <option value="Economic freedom indexes">Economic freedom indexes</option>
-            <option value="Economic structure">Economic structure</option>
-            <option value="Education spending and outcomes">Education spending and outcomes</option>
-            <option value="Energy and environment">Energy and environment</option>
-            <option value="Energy mix">Energy mix</option>
-            <option value="Forecast from the IMF">Forecast from the IMF</option>
-            <option value="Banking system access and depth">Banking system access and depth</option>
-            <option value="Banking system efficiency and stability">Banking system efficiency and stability</option>
-            <option value="GDP and economic growth">GDP and economic growth</option>
-            <option value="Globalization indexes">Globalization indexes</option>
-            <option value="Governance and business environment">Governance and business environment</option>
-            <option value="Government">Government</option>
-            <option value="Healthcare resources">Healthcare resources</option>
-            <option value="Industry Oil coal and electricity">Industry Oil coal and electricity</option>
-            <option value="Inequality and poverty">Inequality and poverty</option>
-            <option value="Infrastructure and transport characteristics">Infrastructure and transport characteristics
-            </option>
-            <option value="International trade and investment">International trade and investment</option>
-            <option value="Labor Market">Labor Market</option>
-            <option value="Military">Military</option>
-            <option value="Minerals">Minerals</option>
-            <option value="Money">Money</option>
-            <option value="Religious composition of the population">Religious composition of the population</option>
-            <option value="Shares of world totals">Shares of world totals</option>
-            <option value="Shares of world totals">Shares of world totals</option>
-            <option value="Stock market, insurance, pensions">Stock market, insurance, pensions</option>
-            <option value="Tourism">Tourism</option>
-            <option value="Labor Market">Labor Market</option>
-            <option value="Communicable Diseases">Communicable Diseases</option>
-            <option value="Business">Business</option>
-            <option value="Education">Education</option>
-        </select>
     </div>
 
+    <!--! line chart -->
     <div id="chart-container"></div>
 
-    <p></p>
+
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- ! we can use this file -->
     <!-- <script src="./d3.v7.min.js"></script> -->
     <!--* javascript -->
-    <script src="d3.js"></script>
+    <script src="./graph.js"></script>
+    <script src="./filter.js"></script>
 </body>
 
 </html>
